@@ -138,7 +138,7 @@ oled_rotation_t oled_init_user(oled_rotation_t rotation) {
 }
 // When you add source files to SRC in rules.mk, you can use functions.
 const char *read_logo(void);
-// >>> NEW: fish animation for the slave-side OLED ------------------------
+/*/ >>> NEW: fish animation for the slave-side OLED ------------------------
 #define FISH_BODY_RX 8
 #define FISH_BODY_RY 5
 #define FISH_TAIL_LEN 6
@@ -187,8 +187,8 @@ static void animate_fish(void) {
     oled_clear();
     draw_fish(fish_x, 16, tail_up ? -2 : 2, fish_dir);
 }
-//newe end
-
+*/
+//end of the fish it bugs when powering on
 bool oled_task_user(void) {
   if (is_keyboard_master()) {
     // If you want to change the display of OLED, you need to change here
@@ -225,7 +225,8 @@ bool oled_task_user(void) {
             oled_write_ln_P(PSTR("-"), false);
     }
 } else {
-    animate_fish();
+    //animate_fish();
+     oled_write(read_logo(), false);
   }
     return false;
 }
